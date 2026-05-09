@@ -1,81 +1,81 @@
 
-// import { useContext, useState , createContext } from "react";
-// // import { useState, createContext  } from "react";
+import { useContext, useState , createContext } from "react";
+// import { useState, createContext  } from "react";
 
-// // Props drilling killer 2 ways 
-// // 1. context API
+// Props drilling killer 2 ways 
+// 1. context API
 
-// // Ideally we have to store in a separate file
+// Ideally we have to store in a separate file
 
-// // Context 3 parts
-// // 1. Create the context :  createContext();
-// // 2. Wrap the it with Provider : contectName.Provider 
-// // 3. catch and use it through using useContext = useContext();
+// Context 3 parts
+// 1. Create the context :  createContext();
+// 2. Wrap the it with Provider : contextName.Provider 
+// 3. catch and use it through using useContext = useContext();
 
-// const BulbContext = createContext(); // created the context
-
-
-// // How to create a Provider 
-// // cleaner way to do it 
-// // using wapper component
-// function BulbProvider({children}){ // this children = <Light />  // component
-//   const [bulbOn , setBulbOn] = useState(true);
+const BulbContext = createContext(); // created the context
 
 
-//   return <BulbContext.Provider value={{  //provided the context through key valur pair
-//         bulbOn: bulbOn,
-//         setBulbOn: setBulbOn
-//         }}>
+// How to create a Provider 
+// cleaner way to do it 
+// using wapper component
+function BulbProvider({children}){ // this children = <Light />  // component
+  const [bulbOn , setBulbOn] = useState(true);
 
-//         {children} 
 
-//       </BulbContext.Provider>
+  return <BulbContext.Provider value={{  //provided the context through key valur pair
+        bulbOn: bulbOn,
+        setBulbOn: setBulbOn
+        }}>
+
+        {children} 
+
+      </BulbContext.Provider>
 
   
-// }
+}
 
-// function App() {
+function App() {
  
-//   return (
-//    <div>
-//     <BulbProvider>
-//       <Light/>
-//     </BulbProvider>
-//    </div>
-//   )
-// }
+  return (
+   <div>
+    <BulbProvider>
+      <Light/>
+    </BulbProvider>
+   </div>
+  )
+}
 
 
-// function Light() {
+function Light() {
   
-//   return (
-//     <div >
-//       <LightBulb  />
-//       <LightSwitch />
-//     </div>
-//   )
-// }
+  return (
+    <div >
+      <LightBulb  />
+      <LightSwitch />
+    </div>
+  )
+}
 
-// function LightBulb(){
-//   const {bulbOn} = useContext(BulbContext); // catch the context here
-//   return (
-//     <div>
-//       {
-//         bulbOn ? <img src="./src/assets/lighton.png" alt="" />
-//         : <img src="./src/assets/lightoff.png" alt=""/>
-//       }
-//     </div>
-//   )
-// }
+function LightBulb(){
+  const {bulbOn} = useContext(BulbContext); // catch the context here
+  return (
+    <div>
+      {
+        bulbOn ? <img src="./src/assets/lighton.png" alt="" />
+        : <img src="./src/assets/lightoff.png" alt=""/>
+      }
+    </div>
+  )
+}
 
-// function LightSwitch(){
-//   const {bulbOn , setBulbOn} = useContext(BulbContext); // catch the context here also   
-//   return (
-//     <div>
-//       <button onClick={() => setBulbOn(prev => !prev)}>Toggle The Bulb</button>
-//     </div>
-//   )
-// }
+function LightSwitch(){
+  const {bulbOn , setBulbOn} = useContext(BulbContext); // catch the context here also   
+  return (
+    <div>
+      <button onClick={() => setBulbOn(prev => !prev)}>Toggle The Bulb</button>
+    </div>
+  )
+}
 
 
 
@@ -126,45 +126,45 @@
 //   </div>
 // };
 
-import React, { createContext, useContext, useState } from 'react';
-import { RecoilRoot, atom, useRecoilValue, useSetRecoilState } from 'recoil';
+// import React, { createContext, useContext, useState } from 'react';
+// import { RecoilRoot, atom, useRecoilValue, useSetRecoilState } from 'recoil';
 
-const count = atom({
-  key: 'countState', // unique ID (with respect to other atoms/selectors)
-  default: 0, // default value (aka initial value)
-});
+// const count = atom({
+//   key: 'countState', // unique ID (with respect to other atoms/selectors)
+//   default: 0, // default value (aka initial value)
+// });
 
-function Parent() {
-  return (
-    <RecoilRoot>
-      <Increase />
-      <Decrease />
-      <Value />
-    </RecoilRoot>
-  );
-}
+// function Parent() {
+//   return (
+//     <RecoilRoot>
+//       <Increase />
+//       <Decrease />
+//       <Value />
+//     </RecoilRoot>
+//   );
+// }
 
-function Decrease() {
-  const setCount = useSetRecoilState(count);
-  return <button onClick={() => setCount(count => count - 1)}>Decrease</button>;
-}
+// function Decrease() {
+//   const setCount = useSetRecoilState(count);
+//   return <button onClick={() => setCount(count => count - 1)}>Decrease</button>;
+// }
 
-function Increase() {
-  const setCount = useSetRecoilState(count);
-  return <button onClick={() => setCount(count => count + 1)}>Increase</button>;
-}
+// function Increase() {
+//   const setCount = useSetRecoilState(count);
+//   return <button onClick={() => setCount(count => count + 1)}>Increase</button>;
+// }
 
-function Value() {
-  const countValue = useRecoilValue(count);
-  return <p>Count: {countValue}</p>;
-}
+// function Value() {
+//   const countValue = useRecoilValue(count);
+//   return <p>Count: {countValue}</p>;
+// }
 
-// App Component
-const App = () => {
-  return <div>
-    <Parent />
-  </div>
-};
+// // App Component
+// const App = () => {
+//   return <div>
+//     <Parent />
+//   </div>
+// };
 
-export default App;
+// export default App;
 
