@@ -103,28 +103,28 @@
 // }
 
 
-// // useRef 
-// // reference to a value, such that when you change the value, the component DOES not 
-// // RE-RENDER
-// import { useRef } from "react";
+// useRef 
+// reference to a value, such that when you change the value, the component DOES not 
+// RE-RENDER
+import { useRef } from "react";
 
-// function App() {
-//   const inputRef = useRef();
+function App() {
+  const inputRef = useRef();
 
 
-//   function focusOnInput(){
-//     inputRef.current.focus();
-//   }
+  function focusOnInput(){
+    inputRef.current.focus();
+  }
 
-//   return(
-//     <div>
-//       Sign Up : 
-//       <input ref={inputRef} type={"text"}></input>
-//       <input type={"text"}></input>
-//       <button onClick={focusOnInput}>Submit</button>
-//     </div>
-//   )
-// }
+  return(
+    <div>
+      Sign Up : 
+      <input ref={inputRef} type={"text"}></input>
+      <input type={"text"}></input>
+      <button onClick={focusOnInput}>Submit</button>
+    </div>
+  )
+}
 
 
 
@@ -202,26 +202,26 @@
 // export default Chat;
 
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0);
+// function App() {
+//   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCount((prev) => prev + 1);
-    }, 1000);
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//       setCount((prev) => prev + 1);
+//     }, 1000);
 
-    // cleanup function
-    return () => clearInterval(timer);
-  }, []);
+//     // cleanup function
+//     return () => clearInterval(timer);
+//   }, []);
 
-  return (
-    <div>
-      <h1>Timer: {count}</h1>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <h1>Timer: {count}</h1>
+//     </div>
+//   );
+// }
 
 export default App;
 
