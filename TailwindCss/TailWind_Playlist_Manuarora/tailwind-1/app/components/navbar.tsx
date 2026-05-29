@@ -1,6 +1,4 @@
-import { link } from 'fs'
-import { title } from 'process'
-import React from 'react'
+
 
 export const Navbar = () => {
     const links = [
@@ -27,6 +25,7 @@ export const Navbar = () => {
                 {link.title}
             </a>
             ))}
+            <button className='btn'>Start free trial</button>
         </div>
     </div>
   )
