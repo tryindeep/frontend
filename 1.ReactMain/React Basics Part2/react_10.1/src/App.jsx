@@ -1,130 +1,124 @@
-// import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
+// Routing
+// Link
+function App() {
 
-
-// // Routing
-// // Link
-// function App() {
-
-//   // another way of routing 
-// //   const router = [{
-// //     path: "/neet/online-coaching-class-11",
-// //     element : <Class11Program/>
-// //   },{
-// //     path: "/neet/online-coaching-class-12",
-// //     element : <Class12Program/>
-// //   }
-// // ]
-
-
-//   return (
-//     <>
-  
-//       <BrowserRouter>
-//         <Routes>
-//               <Route path="/neet" element={<Layout/>}>
-//                 <Route path="/neet/online-coaching-class-11" element={<Class11Program/>} />
-//                 <Route path="/neet/online-coaching-class-12" element={<Class12Program/>} />
-//                 <Route path="/" element={<LandingPage/>} />
-//                 <Route path="*" element={<ErrorPage/>} />
-//               </Route>
-//         </Routes>
-        
-//       </BrowserRouter>
-//     </>
-//   );
-// }
-
-// // layouts
-// function Layout() {
-//   return (
-//     <div style={{height: "100vh" , background: "green"}}>
-//         <Header/>
-//         <div style={{height: "90vh", background: "red"}}>
-//           <Outlet/>
-//         </div>
-//         Footer | Contact Us
-//     </div>
-//   )
-// }
-// function Header() {
-//   return (
-//     <div>
-//        <Link to="/">Allen</Link> 
-//         |
-//         <Link to="/neet/online-coaching-class-11">Class 11</Link> 
-//         |
-//         <Link to="/neet/online-coaching-class-12">Class 12</Link>
-//     </div>
-//   )
-// }
-
-// function ErrorPage(){
-//   return (
-//     <div>
-//       Sorry Page not found
-//     </div>
-//   )
-// }
-// function LandingPage(){
-//   return (
-//     <div>
-//       Welcome to allen!
-//     </div>
-//   )
-// }
-
-// function Class11Program(){
-//   return (
-//     <div>
-//       NEET courses for Class 11th
-//     </div>
-//   )
-// }
-
-// // useNavigate
-// function Class12Program(){
-
-//   const navigate = useNavigate();
-
-//   function redirectUser(){
-//     navigate("/")
+  // another way of routing 
+//   const router = [{
+//     path: "/neet/online-coaching-class-11",
+//     element : <Class11Program/>
+//   },{
+//     path: "/neet/online-coaching-class-12",
+//     element : <Class12Program/>
 //   }
-//   return (
-//     <div>
-//       NEET courses for Class 12th
-//       <button onClick={redirectUser}>Go back to landing page</button>
+// ]
 
-//         {/* <Link to="/"><button>Go back to landing page</button></Link> */}
-      
-      
-//     </div>
-//   )
-// }
+
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+              <Route path="/neet" element={<Layout/>}>
+                <Route path="/neet/online-coaching-class-11" element={<Class11Program/>} />
+                <Route path="/neet/online-coaching-class-12" element={<Class12Program/>} />
+                <Route path="/" element={<LandingPage/>} />
+                <Route path="*" element={<ErrorPage/>} />
+              </Route>
+        </Routes>
+        
+      </BrowserRouter>
+    </>
+  );
+}
+
+// layouts
+function Layout() {
+  return (
+    <div style={{height: "100vh" , background: "green"}}>
+        <Header/>
+        <div style={{height: "90vh", background: "red"}}>
+          <Outlet/>
+        </div>
+        Footer | Contact Us
+    </div>
+  )
+}
+function Header() {
+  return (
+    <div>
+       <Link to="/">Allen</Link> 
+        |
+        <Link to="/neet/online-coaching-class-11">Class 11</Link> 
+        |
+        <Link to="/neet/online-coaching-class-12">Class 12</Link>
+    </div>
+  )
+}
+
+function ErrorPage(){
+  return (
+    <div>
+      Sorry Page not found
+    </div>
+  )
+}
+function LandingPage(){
+  return (
+    <div>
+      Welcome to allen!
+    </div>
+  )
+}
+
+function Class11Program(){
+  return (
+    <div>
+      NEET courses for Class 11th
+    </div>
+  )
+}
+
+// useNavigate
+function Class12Program(){
+  const navigate = useNavigate();
+
+  function redirectUser(){
+    navigate("/")
+  }
+  return (
+    <div>
+      NEET courses for Class 12th
+      <button onClick={redirectUser}>Go back to landing page</button>
+
+        {/* <Link to="/"><button>Go back to landing page</button></Link> */}
+    </div>
+  )
+}
 
 
 // useRef 
 // reference to a value, such that when you change the value, the component DOES not 
 // RE-RENDER
-import { useRef } from "react";
+// import { useRef } from "react";
 
-function App() {
-  const inputRef = useRef();
+// function App() {
+//   const inputRef = useRef();
 
 
-  function focusOnInput(){
-    inputRef.current.focus();
-  }
+//   function focusOnInput(){
+//     inputRef.current.focus();
+//   }
 
-  return(
-    <div>
-      Sign Up : 
-      <input ref={inputRef} type={"text"}></input>
-      <input type={"text"}></input>
-      <button onClick={focusOnInput}>Submit</button>
-    </div>
-  )
-}
+//   return(
+//     <div>
+//       Sign Up : 
+//       <input ref={inputRef} type={"text"}></input>
+//       <input type={"text"}></input>
+//       <button onClick={focusOnInput}>Submit</button>
+//     </div>
+//   )
+// }
 
 
 

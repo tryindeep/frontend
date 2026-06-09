@@ -444,7 +444,7 @@ import React, { Component } from "react";
 // }
 
 
-// blackbox
+// black-box
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
