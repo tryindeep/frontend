@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <SidebarClass1/>
-      {/* <Sidebar2Transition/> */}
+      <Sidebar2Transition/>
     </div>
   )
 }
