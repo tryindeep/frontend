@@ -1,5 +1,7 @@
 //Important React rule: Component names must start with a capital letter.
 
+import { useState } from "react";
+
 
 
 
@@ -446,4 +448,244 @@ function App() {
 //   )
 // };
 
-// export default App;
+
+
+
+
+// Next lesson — useState with Arrays
+// Build a Todo List using React and TypeScript.
+
+// Requirements:
+// 1. Create an input field.
+// 2. Add a button to add a todo.
+// 3. Store todos using useState.
+// 4. Display todos using .map().
+// 5. Give every todo a unique ID.
+// 6. Add a Delete button for each todo.
+// 7. Clear the input after adding a todo.
+// 8. Don't allow empty todos.
+// Hints:
+// - Use an array of objects rather than an array of strings.
+// - Each object should contain id and title.
+// - Use the spread operator to add items.
+// - Use .filter() to delete an item.
+
+// type Todo = {
+//   id: number,
+//   title: string,
+// }
+
+// const App = () => {
+
+//   const [input, setInput] = useState("");
+//   const [todos, setTodos] = useState<Todo[]>([
+//     {
+//       id: 1,
+//       title: "Go to gym"
+//     }
+//   ]);
+
+//   // adding todo 
+//   function handleAdd() {
+
+//     const trimedTitle = input.trim();
+
+//     if(!trimedTitle){
+//       return;
+//     }
+
+//     const newTodo : Todo = {
+//       id : Date.now(),
+//       title : trimedTitle
+//     }
+
+//     setTodos((prevTodos)=>[...prevTodos, newTodo])
+//     setInput("");
+//   }
+
+//   // deleting todo
+//   const handleDelete = (id : number) => {
+//     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+//   }
+
+//   return (
+//     <>
+//       <h1>Todo Application </h1>
+//       <input type="text"
+//         placeholder="Enter Your Todo "
+//         value={input}
+//         onChange={(e) => setInput(e.target.value)}
+//       />
+//       <button onClick={handleAdd}>Add</button>
+
+//       <h2>Todos ({todos.length})</h2>
+//       <ul>
+//         {todos.map((todo) => (
+//           <li key={todo.id}>
+//             {todo.title}
+//             <button type="button"
+//               onClick={() => handleDelete(todo.id)}
+//             >
+//               delete
+//             </button>
+//           </li>
+
+//         ))}
+
+//       </ul>
+//     </>
+//   )
+// }
+
+
+// Build a Task Manager using React and TypeScript.
+// My Task Manager
+// Total Tasks
+// 4
+
+// Completed
+// 2
+
+// Pending
+// 2
+
+
+// Enter a new task...
+
+// Add
+
+
+// Learn React Hooks
+// Completed
+
+// Practise TypeScript
+// Completed
+
+// Build a backend API
+// Pending
+
+// Solve 3 DSA problems
+// Pending
+
+// Illustrative expected application layout.
+// Requirements
+// 1. Create a Task type
+
+// Each task should contain:
+// - id: number
+// - title: string
+// - completed: boolean
+// 2. Add tasks
+// - Create an input field.
+// - Add an Add button.
+// - Prevent empty tasks.
+// - Clear the input after adding.
+// 3. Display tasks
+// - Use .map().
+// - Display the task title.
+// - Use a unique key.
+// 4. Delete tasks
+// - Add a Delete button for every task.
+// - Remove the selected task using .filter().
+// 5. Complete / Undo tasks
+// - Add a button to mark a task completed.
+// - Clicking it again should mark it pending.
+// - Use .map() to update the selected task.
+// 6. Task statistics
+// - Display total tasks.
+// - Display completed tasks.
+// - Display pending tasks.
+
+
+
+type Task = {
+  id: number,
+  title: string,
+  completed: boolean
+}
+
+function App() {
+
+  const [input, setInput] = useState("");
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  function handleAdd() {
+    const trimmedTitle = input.trim();
+
+    if (!trimmedTitle) {
+      return;
+    }
+
+    const newTask: Task = {
+      id: Date.now(),
+      title: trimmedTitle,
+      completed: false
+    }
+
+    setTasks((prevTasks) => [...prevTasks, newTask])
+    setInput("");
+  }
+
+  function handleDelete(id: number) {
+    setTasks((prevtasks) => prevtasks.filter((task) => task.id !== id))
+  }
+
+  function handleToggle (id : Number){
+    setTasks((prevtasks) => 
+      prevtasks.map((task) => 
+        task.id === id ? {...task, completed : !task.completed} : task
+      )
+    )
+  }
+
+  return (
+    <>
+      <h1>Task Manager Application </h1>
+
+
+      <div style={{ display: "flex", gap: "16px", margin: "4px", padding: "4px" }}>
+        <p>Total Task : {tasks.length}</p>
+        <p>Completed : {tasks.filter((task) => task.completed !== false).length}</p>
+        <p>Pending : {tasks.filter((task) => task.completed !== true).length}</p>
+      </div>
+
+      <div className="input">
+        <input
+          type="text"
+          placeholder="Enter your task "
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button
+          type="button"
+          onClick={handleAdd}
+        >
+          Add
+        </button>
+      </div>
+
+      <br />
+      <div >
+        <h2>All Tasks </h2>
+        {tasks.map((task) => (
+
+          <li key={task.id}>
+            <input
+              type="Checkbox"
+              checked ={task.completed}
+              onClick={() => handleToggle(task.id)}
+            />
+            {task.title}
+            <button onClick={() => handleDelete(task.id)}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </div>
+
+    </>
+  )
+}
+
+
+export default App;
