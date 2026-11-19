@@ -3,9 +3,6 @@
 import { useState } from "react";
 
 
-
-
-
 // function Welcome(){
 //   return <h1> hello react </h1>
 // }
@@ -87,56 +84,56 @@ function App() {
 
 // =========== props and children ==============
 
-// type ProfileCardProps = {
-//   name : string, 
-//   role : string,
-//   company : string,
-// }
+type ProfileCardProps = {
+  name : string, 
+  role : string,
+  company : string,
+}
 
-// function ProfileCard ({name , role , company} : ProfileCardProps) {
-//   return (
-//     <div>
-//       <h1>{name}</h1>
-//       <p>Role : {role}</p>
-//       <p>Company : {company}</p>
-//     </div>
-//   )
-// }
+function ProfileCard ({name , role , company} : ProfileCardProps) {
+  return (
+    <div>
+      <h1>{name}</h1>
+      <p>Role : {role}</p>
+      <p>Company : {company}</p>
+    </div>
+  )
+}
 
-// type CardProps = {
-//   children : React.ReactNode;
-// }
+type CardProps = {
+  children : React.ReactNode;
+}
 
-// function Card ({children} : CardProps){
-//   return (
-//     <div className="card">
-//       {children}
-//     </div>
-//   )
-// }
+function Card ({children} : CardProps){
+  return (
+    <div className="card">
+      {children}
+    </div>
+  )
+}
 
-// function App() {
+function App() {
 
-//   return (
-//     <>
-//       <ProfileCard
-//         name="Tridip"
-//         role="Software Developer"
-//         company="Google"
-//       />
-//       <ProfileCard
-//         name="Rahul"
-//         role="Frontend Developer"
-//         company="X"
-//       />
-//       <Card>
-//         <h1>Soham</h1>
-//         <p>Software Engineer</p>
-//       </Card>
+  return (
+    <>
+      <ProfileCard
+        name="Tridip"
+        role="Software Developer"
+        company="Google"
+      />
+      <ProfileCard
+        name="Rahul"
+        role="Frontend Developer"
+        company="X"
+      />
+      <Card>
+        <h1>Soham</h1>
+        <p>Software Engineer</p>
+      </Card>
 
-//     </>
-//   )
-// }
+    </>
+  )
+}
 
 
 // ============ conditional Rendering =======================
@@ -598,94 +595,94 @@ function App() {
 
 
 
-type Task = {
-  id: number,
-  title: string,
-  completed: boolean
-}
+// type Task = {
+//   id: number,
+//   title: string,
+//   completed: boolean
+// }
 
-function App() {
+// function App() {
 
-  const [input, setInput] = useState("");
-  const [tasks, setTasks] = useState<Task[]>([])
+//   const [input, setInput] = useState("");
+//   const [tasks, setTasks] = useState<Task[]>([])
 
-  function handleAdd() {
-    const trimmedTitle = input.trim();
+//   function handleAdd() {
+//     const trimmedTitle = input.trim();
 
-    if (!trimmedTitle) {
-      return;
-    }
+//     if (!trimmedTitle) {
+//       return;
+//     }
 
-    const newTask: Task = {
-      id: Date.now(),
-      title: trimmedTitle,
-      completed: false
-    }
+//     const newTask: Task = {
+//       id: Date.now(),
+//       title: trimmedTitle,
+//       completed: false
+//     }
 
-    setTasks((prevTasks) => [...prevTasks, newTask])
-    setInput("");
-  }
+//     setTasks((prevTasks) => [...prevTasks, newTask])
+//     setInput("");
+//   }
 
-  function handleDelete(id: number) {
-    setTasks((prevtasks) => prevtasks.filter((task) => task.id !== id))
-  }
+//   function handleDelete(id: number) {
+//     setTasks((prevtasks) => prevtasks.filter((task) => task.id !== id))
+//   }
 
-  function handleToggle (id : Number){
-    setTasks((prevtasks) => 
-      prevtasks.map((task) => 
-        task.id === id ? {...task, completed : !task.completed} : task
-      )
-    )
-  }
+//   function handleToggle (id : Number){
+//     setTasks((prevtasks) => 
+//       prevtasks.map((task) => 
+//         task.id === id ? {...task, completed : !task.completed} : task
+//       )
+//     )
+//   }
 
-  return (
-    <>
-      <h1>Task Manager Application </h1>
+//   return (
+//     <>
+//       <h1>Task Manager Application </h1>
 
 
-      <div style={{ display: "flex", gap: "16px", margin: "4px", padding: "4px" }}>
-        <p>Total Task : {tasks.length}</p>
-        <p>Completed : {tasks.filter((task) => task.completed !== false).length}</p>
-        <p>Pending : {tasks.filter((task) => task.completed !== true).length}</p>
-      </div>
+//       <div style={{ display: "flex", gap: "16px", margin: "4px", padding: "4px" }}>
+//         <p>Total Task : {tasks.length}</p>
+//         <p>Completed : {tasks.filter((task) => task.completed !== false).length}</p>
+//         <p>Pending : {tasks.filter((task) => task.completed !== true).length}</p>
+//       </div>
 
-      <div className="input">
-        <input
-          type="text"
-          placeholder="Enter your task "
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button
-          type="button"
-          onClick={handleAdd}
-        >
-          Add
-        </button>
-      </div>
+//       <div className="input">
+//         <input
+//           type="text"
+//           placeholder="Enter your task "
+//           value={input}
+//           onChange={(e) => setInput(e.target.value)}
+//         />
+//         <button
+//           type="button"
+//           onClick={handleAdd}
+//         >
+//           Add
+//         </button>
+//       </div>
 
-      <br />
-      <div >
-        <h2>All Tasks </h2>
-        {tasks.map((task) => (
+//       <br />
+//       <div >
+//         <h2>All Tasks </h2>
+//         {tasks.map((task) => (
 
-          <li key={task.id}>
-            <input
-              type="Checkbox"
-              checked ={task.completed}
-              onClick={() => handleToggle(task.id)}
-            />
-            {task.title}
-            <button onClick={() => handleDelete(task.id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </div>
+//           <li key={task.id}>
+//             <input
+//               type="Checkbox"
+//               checked ={task.completed}
+//               onClick={() => handleToggle(task.id)}
+//             />
+//             {task.title}
+//             <button onClick={() => handleDelete(task.id)}>
+//               Delete
+//             </button>
+//           </li>
+//         ))}
+//       </div>
 
-    </>
-  )
-}
+//     </>
+//   )
+// }
 
 
 export default App;
